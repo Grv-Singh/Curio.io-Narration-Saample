@@ -12,7 +12,7 @@
 </head>
 <body>
     <h1>Audio narration samples from Gaurav Singh</h1>
-    <h2>&nbsp;- For Curio.io</h2>
+    <h2>&nbsp;- For Curio Labs<br><br>&nbsp;1. Turn up the volume around 85%<br>&nbsp;2. Select a sample and listen on autoplay</h2>
     
     <div style="display: flex;">
         <div style="flex: 0.3;">
@@ -21,6 +21,8 @@
 <li><a href="https://github.com/Grv-Singh/Curio.io-Narration-Sample/raw/main/AquaJet%20PowerFloss%20Marketing.mp3">AquaJet PowerFloss Marketing</a></li>
 <li><a href="https://github.com/Grv-Singh/Curio.io-Narration-Sample/raw/main/AquaSpa%20Shower%20marketing.mp3">AquaSpa Shower marketing</a></li>
 <li><a href="https://github.com/Grv-Singh/Curio.io-Narration-Sample/raw/main/AromaZen%20Marketer.mp3">AromaZen Marketer</a></li>
+<li><a href="https://github.com/Grv-Singh/Curio.io-Narration-Sample/raw/main/Anabella.mp3">Anabella</a></li>
+<li><a href="https://github.com/Grv-Singh/Curio.io-Narration-Sample/raw/main/Naruto%20Narration.mp3">Naruto Narration</a></li>
 <li><a href="https://github.com/Grv-Singh/Curio.io-Narration-Sample/raw/main/BronzeBoost%20Marketer.mp3">BronzeBoost Marketer</a></li>
 <li><a href="https://github.com/Grv-Singh/Curio.io-Narration-Sample/raw/main/Chef's%20Choice%20Marketing.mp3">Chef's Choice Marketing</a></li>
 <li><a href="https://github.com/Grv-Singh/Curio.io-Narration-Sample/raw/main/Curry%20Creations%20Marketer.mp3">Curry Creations Marketer</a></li>
@@ -71,20 +73,37 @@
             const audioPlayer = document.getElementById('audioPlayer');
             const currentFileTitle = document.getElementById('currentFileTitle');
             const audioSource = audioPlayer.querySelector('source');
+            let currentIndex = 0;
+
+            function playNextAudio() {
+                const nextFile = fileList.getElementsByTagName('a')[currentIndex];
+                if (nextFile) {
+                    const fileUrl = nextFile.getAttribute('href');
+                    audioPlayer.src = fileUrl;
+                    audioSource.src = fileUrl;
+                    audioPlayer.play();
+                    currentFileTitle.textContent = nextFile.textContent.replace(/%20/g, ' ').replace('.mp3', '');
+                    currentIndex++;
+                }
+            }
 
             fileList.addEventListener('click', function(event) {
                 if (event.target.tagName === 'A') {
                     event.preventDefault();
                     const fileUrl = event.target.getAttribute('href');
                     audioPlayer.src = fileUrl;
-                    audioSource.src = fileUrl; // Update the source tag's src attribute
+                    audioSource.src = fileUrl;
                     audioPlayer.play();
-                    currentFileTitle.textContent = event.target.textContent.replace(/%20/g, ' ').replace('.mp3', ''); // Replace % with space and remove .mp3
+                    currentFileTitle.textContent = event.target.textContent.replace(/%20/g, ' ').replace('.mp3', '');
                 }
             });
 
             audioPlayer.addEventListener('play', function() {
-                currentFileTitle.textContent = audioPlayer.src.split('/').pop().replace(/%20/g, ' ').replace('.mp3', ''); // Replace % with space and remove .mp3
+                currentFileTitle.textContent = audioPlayer.src.split('/').pop().replace(/%20/g, ' ').replace('.mp3', '');
+            });
+
+            audioPlayer.addEventListener('ended', function() {
+                playNextAudio();
             });
         });
     </script>
