@@ -7,11 +7,16 @@
     <style>
         #fileList li {
             margin-bottom: 10px; /* Adjust the spacing as needed */
+            font-size: 18px;
+        }
+
+        a{
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <h1>Audio narration samples from Gaurav Singh</h1>
+    <h1>Audio samples narrated by Gaurav Singh</h1>
     <h2>&nbsp;- For Curio Labs<br><br>&nbsp;1. Turn up the volume around 85%<br>&nbsp;2. Select a sample and listen on autoplay</h2>
     
     <div style="display: flex;">
@@ -59,7 +64,7 @@
 <li><a href="https://github.com/Grv-Singh/Curio.io-Narration-Sample/raw/main/Yoga%20Marketing.mp3">Yoga Marketing</a></li></ul>
         </div>
         <div style="flex: 1;">
-            <p id="currentFileTitle"></p>
+            <h3>Now Playing : <font id="currentFileTitle"></font></h3>
             <audio controls id="audioPlayer" src="https://github.com/Grv-Singh/Curio.io-Narration-Sample/blob/main/Adventure%20Marketer.m4a">
                 <source src="https://github.com/Grv-Singh/Curio.io-Narration-Sample/blob/main/Adventure%20Marketer.m4a" type="audio/mp4">
                 Your browser does not support the audio element.
